@@ -97,3 +97,11 @@ test('in-page bridge: reports fill + creative size, relays click-outs', async ()
   assert.ok(prevented);
   assert.deepEqual(posted.at(-1), { type: 'open', url: 'https://serve.adviverse.com/click?rid=r2' });
 });
+
+test('optional peers are required directly inside try (else Metro makes them hard deps)', async () => {
+  const { readFileSync } = await import('node:fs');
+  const lines = readFileSync(new URL('../dist/host.js', import.meta.url), 'utf8').split('\n');
+  const reqs = lines.flatMap((l, i) => (/require\(["']expo-/.test(l) ? [i] : []));
+  assert.equal(reqs.length, 2);
+  for (const i of reqs) assert.match(lines[i - 1], /try \{\s*$/, `line ${i + 1} is not directly in a try block`);
+});

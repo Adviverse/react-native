@@ -100,8 +100,11 @@ The SDK then requests `/ad?...&client=app&bundle=...&platform=...` (no page URL 
 and keeps its normal beacons and viewability. `window.open` and link clicks are relayed
 to React Native and opened with `Linking.openURL`.
 
-`expo-application` and `expo-tracking-transparency` are optional; they're `require`d
-inside try/catch, which Metro treats as optional dependencies.
+`expo-application` and `expo-tracking-transparency` are optional; each is `require`d
+directly inside try/catch, which Metro treats as an optional dependency. Expo's Metro
+config enables that by default. Bare React Native (plain Metro) does not: either install
+both modules, or set `transformer: { allowOptionalDependencies: true }` in `metro.config.js`.
+(0.1.0 required them through a helper, which Metro saw as hard dependencies: upgrade.)
 
 ## Develop
 

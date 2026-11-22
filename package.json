@@ -1,6 +1,6 @@
 {
   "name": "@adviverse/react-native",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Adviverse ads for React Native / Expo — <AdView/> banners and interstitials served as app inventory (client=app), clicks in the system browser.",
   "license": "MIT",
   "repository": { "type": "git", "url": "git+https://github.com/Adviverse/react-native.git" },
